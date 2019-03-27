@@ -92,3 +92,38 @@ fn main() -> std::io::Result<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use assert_cli;
+    use std::fs;
+    use std::fs::File;
+    use std::io::Write;
+
+    #[test]
+    fn calling_ripjson_without_arguments() {
+        assert_cli::Assert::main_binary()
+            .with_args(&[""])
+            .fails()
+            .and()
+            .stdout()
+            .contains("Error: no files specified.")
+            .unwrap();
+    }
+
+    #[test]
+    fn ripjson_find_simple() {
+        let mut file = File::create("test.json").unwrap();
+        file.write_all(b"{\"name\": \"John Doe\",\"age\": 43,\"address\":
+        {\"street\": \"10 Downing Street\",\"city\": \"London\"
+        },\"phones\": [\"+44 1234567\",\"+44 2345678\"]}").unwrap();
+        assert_cli::Assert::main_binary()
+            .with_args(&[".*es.*/cit", "test.json"])
+            .succeeds()
+            .and()
+            .stdout()
+            .is("address/city = \"London\"")
+            .unwrap();
+        fs::remove_file("test.json").unwrap();
+    }
+}

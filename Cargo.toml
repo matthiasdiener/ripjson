@@ -1,6 +1,6 @@
 [package]
 name = "ripjson"
-version = "0.9.1"
+version = "0.9.2"
 authors = ["Matthias Diener <matthias.diener@gmail.com>"]
 description = "A fast and lean way to grep in JSON files."
 license = "MIT"
@@ -15,6 +15,7 @@ getopts = "0.2"
 colored = "1.6"
 atty = "0.2"
 indextree = "3"
+assert_cli = "0.6"
 
 [[bin]]
 bench = false
