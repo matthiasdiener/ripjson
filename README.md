@@ -37,13 +37,13 @@ $ cat test.json
     ]
 }
 
-$ rj .*es.* test.json
+$ rj '.*es.*' test.json
 address/street = "10 Downing Street"
 address/city = "London"
 phones = "+44 1234567"
 phones = "+44 2345678"
 
-$ rj .*es.*/cit test.json
+$ rj '.*es.*/cit' test.json
 address/city = "London"
 
 $
