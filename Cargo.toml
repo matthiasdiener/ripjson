@@ -1,0 +1,22 @@
+[package]
+name = "ripjson"
+version = "0.9.0"
+authors = ["Matthias Diener <matthias.diener@gmail.com>"]
+description = "A fast and lean way to grep in JSON files."
+license = "MIT"
+edition = "2018"
+
+[dependencies]
+serde_json = {version="1.0", features = ["preserve_order"]}
+indexmap = { version = "1", features = ["serde-1"] }
+serde = "1.0"
+regex = "1"
+getopts = "0.2"
+colored = "1.6"
+atty = "0.2"
+indextree = "3"
+
+[[bin]]
+bench = false
+path = "src/main.rs"
+name = "rj"
