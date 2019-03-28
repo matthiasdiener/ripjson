@@ -1,6 +1,12 @@
 # ripjson
 A fast and lean way to grep in JSON files.
 
+## Installation
+
+``` console
+$ cargo install ripjson
+```
+
 ## Usage
 
     Usage: rj <regex> <files> [options]
