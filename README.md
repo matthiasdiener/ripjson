@@ -51,5 +51,4 @@ phones = "+44 2345678"
 
 $ rj '.*es.*/cit' test.json
 address/city = "London"
-
-$
+```
