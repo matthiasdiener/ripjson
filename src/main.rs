@@ -5,6 +5,7 @@ use regex::Captures;
 use regex::Regex;
 use serde_json::Value;
 use std::fs;
+use std::io::Read;
 
 mod options;
 
@@ -92,7 +93,13 @@ fn search_string(regex: &str, content: &str, color_output: bool) -> String {
 }
 
 fn search_file(regex: &str, filename: &str, color_output: bool) -> std::io::Result<()> {
-    let contents = fs::read_to_string(filename).unwrap();
+    let mut contents = String::new();
+
+    if filename == "-" {
+        std::io::stdin().read_to_string(&mut contents)?;
+    } else {
+        contents = fs::read_to_string(filename).unwrap();
+    }
 
     print!("{}", search_string(regex, &contents, color_output));
     Ok(())
@@ -121,9 +128,6 @@ mod tests {
         assert_cli::Assert::main_binary()
             .with_args(&[""])
             .fails()
-            .and()
-            .stdout()
-            .contains("Error: no files specified.")
             .unwrap();
     }
 
@@ -154,7 +158,7 @@ mod tests {
         let regex = ".*es.*/cit";
         assert_eq!(
             &search_string(regex, mystr, false),
-            "address/city = \"London\""
+            "address/city = \"London\"\n"
         );
     }
 }

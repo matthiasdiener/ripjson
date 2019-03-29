@@ -83,9 +83,8 @@ pub fn parse_options() -> (String, Vec<String>, bool) {
     let files = if matches.free.len() > 1 {
         matches.free[1..].to_vec()
     } else {
-        println!("Error: no files specified.\n");
-        print_usage(&program, opts);
-        std::process::exit(1)
+        // Read from stdin if no file specified
+        vec![String::from("-")]
     };
 
     (regex, files, color_output)
