@@ -15,12 +15,15 @@ fn format_match(regex: &Regex, color_output: bool, path: &str, extra: &str, res:
 
     if color_output {
         let output = regex.replace_all(&path, |caps: &Captures| {
-            format!("{}{}", &caps[0].red().bold(), extra)
+            format!("{}", &caps[0].red().bold())
         });
         res.push_str(&output);
+        res.push_str(extra);
+        res.push('\n');
     } else {
         res.push_str(path);
         res.push_str(extra);
+        res.push('\n');
     }
 }
 
@@ -91,7 +94,7 @@ fn search_string(regex: &str, content: &str, color_output: bool) -> String {
 fn search_file(regex: &str, filename: &str, color_output: bool) -> std::io::Result<()> {
     let contents = fs::read_to_string(filename).unwrap();
 
-    println!("{}", search_string(regex, &contents, color_output));
+    print!("{}", search_string(regex, &contents, color_output));
     Ok(())
 }
 
