@@ -1,6 +1,6 @@
 [package]
 name = "ripjson"
-version = "0.9.3"
+version = "0.9.4"
 authors = ["Matthias Diener <matthias.diener@gmail.com>"]
 description = "A fast and lean way to grep in JSON files."
 license = "MIT"
