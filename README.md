@@ -20,7 +20,7 @@ $ cargo install ripjson
             --color <WHEN>  Color output.
                             WHEN can be never, always, or auto [default].
 
-Prints all JSON keys and values in `<files>` that match `<regex>`.
+Prints all JSON keys and values in `<files>` whose keys match `<regex>`.
 
 `<regex>` specifies for which JSON keys to search for. Separate path elements
 with a `/`, e.g. `user/name`, similar to the JSON pointer syntax specfied in
