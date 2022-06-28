@@ -1,6 +1,6 @@
 [package]
 name = "ripjson"
-version = "0.9.7"
+version = "0.9.8"
 readme = "README.md"
 authors = ["Matthias Diener <matthias.diener@gmail.com>"]
 description = "A fast and lean way to grep in JSON files."
@@ -8,7 +8,7 @@ license = "MIT"
 documentation = "https://github.com/matthiasdiener/ripjson"
 homepage = "https://github.com/matthiasdiener/ripjson"
 repository = "https://github.com/matthiasdiener/ripjson"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 serde_json = {version="1.0", features = ["preserve_order"]}
