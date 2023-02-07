@@ -18,8 +18,7 @@ regex = "1"
 getopts = "0.2"
 colored = "1.6"
 atty = "0.2"
-indextree = "3"
-assert_cli = "0.6"
+assert_cmd = "2"
 
 [[bin]]
 bench = false

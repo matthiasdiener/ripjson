@@ -118,17 +118,15 @@ fn main() -> std::io::Result<()> {
 #[cfg(test)]
 mod tests {
     use crate::search_string;
-    use assert_cli;
+    use assert_cmd::Command;
     use std::fs;
     use std::fs::File;
     use std::io::Write;
 
     #[test]
     fn calling_ripjson_without_arguments() {
-        assert_cli::Assert::main_binary()
-            .with_args(&[""])
-            .fails()
-            .unwrap();
+        let mut cmd = Command::cargo_bin("rj").unwrap();
+        cmd.assert().failure();
     }
 
     #[test]
@@ -140,13 +138,15 @@ mod tests {
         },\"phones\": [\"+44 1234567\",\"+44 2345678\"]}",
         )
         .unwrap();
-        assert_cli::Assert::main_binary()
-            .with_args(&[".*es.*/cit", "test.json"])
-            .succeeds()
-            .and()
-            .stdout()
-            .is("address/city = \"London\"")
-            .unwrap();
+        let mut cmd = Command::cargo_bin("rj").unwrap();
+        let assert = cmd
+            .arg(".*es.*/cit")
+            .arg("test.json")
+            .assert();
+
+        assert
+            .success()
+            .stdout("address/city = \"London\"\n");
         fs::remove_file("test.json").unwrap();
     }
 
