@@ -274,7 +274,7 @@ checksum = "e5ea92a5b6195c6ef2a0295ea818b312502c6fc94dde986c5553242e18fd4ce2"
 
 [[package]]
 name = "ripjson"
-version = "0.9.9"
+version = "0.9.10"
 dependencies = [
  "assert_cmd",
  "colored",
